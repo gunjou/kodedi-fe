@@ -48,7 +48,7 @@ const Anamnesis = () => {
 					<span class="text-base"><IoMdSave /></span>
 				</span>
 			</div>
-			</div>
+		</div>
     </div>
   )
 }

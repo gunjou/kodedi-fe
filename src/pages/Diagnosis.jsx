@@ -30,11 +30,11 @@ const Diagnosis = () => {
           <Logout />
         </span>
 			</div>
-      <div class="StatusPatients grid grid-cols-3 gap-4">
-				<div class="Left">
+      <div class="StatusPatients grid grid-cols-5 gap-4">
+				<div class="Left col-span-2">
           <ListPatient />
         </div>
-				<div class="Right col-span-2">
+				<div class="Right col-span-3">
           <DetailPatient />
           <p class="Predict font-bold text-sm text-left">
             Prediksi / Rekomendasi Diagnosa

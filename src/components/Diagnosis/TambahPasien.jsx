@@ -1,26 +1,26 @@
-import { Modal, TextField } from '@mui/material';
+import { TextField } from '@mui/material';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
-import { Box } from '@mui/system';
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import "react-datepicker/dist/react-datepicker.css";
+// import { handleClose } from './ListPatient';
 
 const TambahPasien = () => {
-	const [open, setOpen] = React.useState(false);
-	const handleOpen = () => setOpen(true);
-	const handleClose = () => setOpen(false);
-
   const [title, setTitle] = useState("");
   const [fullname, setFullname] = useState("");
   const [gender, setGender] = useState("");
   const [nationality, setNationality] = useState("");
   const [birthDate, setBirthDate] = useState(null);
   const [fixBirthDate, setFixBirthDate] = useState(null);
+
+  const [masterTitle, setMasterTitle] = useState([]);
+  const [masterJK, setMasterJK] = useState([]);
+  const [masterNegara, setMasterNegara] = useState([]);
 
 	const handleChangeTitle = (event) => {
     setTitle(event.target.value);
@@ -36,6 +36,33 @@ const TambahPasien = () => {
     setFixBirthDate(event.$d);
   };
 	// console.log(fixBirthDate)
+
+	useEffect(() => {
+		axios.get(
+			'http://192.168.0.109:5000/master/data-title',
+			{headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }}
+		).then((response) => {
+			setMasterTitle(response.data)
+		});
+	}, []);
+
+	useEffect(() => {
+		axios.get(
+			'http://192.168.0.109:5000/master/data-jeniskelamin',
+			{headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }}
+		).then((response) => {
+			setMasterJK(response.data)
+		});
+	}, []);
+
+	useEffect(() => {
+		axios.get(
+			'http://192.168.0.109:5000/master/data-negara',
+			{headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }}
+		).then((response) => {
+			setMasterNegara(response.data)
+		});
+	}, []);
 
 	function handleSubmit(event) {
     event.preventDefault();
@@ -64,118 +91,102 @@ const TambahPasien = () => {
   }
 
   return (
-		<button className="Add p-1 border bg-green-500 rounded-2xl flex text-white" onClick={handleOpen}>
-					<i className="pl-2 fa-solid fa-plus p-1 text-sm"></i>
-					<p className="pr-3 text-sm">Tambah</p>
-			<Modal
-							open={open}
-							onClose={handleClose}
-							aria-labelledby="modal-modal-title"
-							aria-describedby="modal-modal-description"
-						>
-				<div className="TambahPasien-modal rounded-lg ml-[40%] mr-[45%] mt-10 bg-[#eeeff1] p-5">
-					<div className="header text-2xl pb-2 flex">
-						<Box >
-							<span id="modal-modal-title" className="text-xl font-bold">
-								Tambah Pasien
-							</span>
-							<div id="modal-modal-description" className="mt-3">
-								<form action="sumbit" className='grid'>
-									{/* Titile */}
-									<div className="Title mb-4 text-xs">
-										<label className="relative block">
-											<span className="sr-only">Title</span>
-											<FormControl fullWidth size="small">
-												<InputLabel id="demo-simple-select-label">Title</InputLabel>
-												<Select
-													labelId="demo-simple-select-label"
-													id="demo-simple-select"
-													value={title}
-													label="Title"
-													onChange={handleChangeTitle}
-												>
-													<MenuItem value={1}>Tn.</MenuItem>
-													<MenuItem value={2}>Nn.</MenuItem>
-													<MenuItem value={3}>Ny.</MenuItem>
-													<MenuItem value={4}>An.</MenuItem>
-												</Select>
-											</FormControl>
-										</label>
-									</div>
-									{/* Nama Lengkap */}
-									<div className="Fullname mb-4">
-										<label className="relative block">
-											<FormControl fullWidth size="small">
-												<TextField 
-					                onChange={(e) => setFullname(e.target.value)}
-													id="outlined-basic"
-													label="Fullname"
-													variant="outlined"
-													size="small"
-												/>
-											</FormControl>
-										</label>
-									</div>
-									{/* Gender */}
-									<div className="Title mb-4 text-xs">
-										<label className="relative block">
-											{/* <span className="sr-only">Title</span> */}
-											<FormControl fullWidth size="small">
-												<InputLabel id="demo-simple-select-label">Jenis Kelamin</InputLabel>
-												<Select
-													labelId="demo-simple-select-label"
-													id="demo-simple-select"
-													value={gender}
-													label="Jenis Kelamin"
-													onChange={handleChangeGender}
-												>
-													<MenuItem value={1}>Laki-laki</MenuItem>
-													<MenuItem value={2}>Perempuan</MenuItem>
-												</Select>
-											</FormControl>
-										</label>
-									</div>
-									{/* Nationality */}
-									<div className="Title mb-4 text-xs">
-										<label className="relative block">
-											{/* <span className="sr-only">Title</span> */}
-											<FormControl fullWidth size="small">
-												<InputLabel id="demo-simple-select-label">Kewarganegaraan</InputLabel>
-												<Select
-													labelId="demo-simple-select-label"
-													id="demo-simple-select"
-													value={nationality}
-													label="Kewarganegaraan"
-													onChange={handleChangeNationality}
-												>
-													<MenuItem value={1}>Indonesia</MenuItem>
-												</Select>
-											</FormControl>
-										</label>
-									</div>
-									{/* Tanggal Lahir */}
-									<div className="flex bg-[#eeeff1] rounded-lg">
-										<LocalizationProvider dateAdapter={AdapterDayjs}>
-											<DatePicker
-												label="Tanggal Lahir"
-												inputFormat="DD/MM/YYYY"
-												value={birthDate}
-												onChange={handleChangeBirthDate}
-												renderInput={(params) => <TextField size="small" fullWidth {...params } />}
-												InputAdornmentProps={{ position: 'start' }}
-												/>
-										</LocalizationProvider>
-									</div>
-								</form>
-							</div>
-								<div className="submit mt-4 h-8 ml-[30%] mr-[30%] text-center rounded-xl text-white bg-green-600 hover:bg-green-800 ">
-              		<input type="submit" value="Submit" onClick={handleSubmit} />
-            		</div>
-						</Box>
-					</div>
+		<div id="modal-modal-description" className="">
+			<form action="sumbit" className='grid w-auto'>
+				{/* Titile */}
+				<div className="Title mb-6 text-xs">
+					<label className="relative block">
+						<span className="sr-only">Title</span>
+						<FormControl fullWidth size="small">
+							<InputLabel id="demo-simple-select-label">Title</InputLabel>
+							<Select
+								labelId="demo-simple-select-label"
+								id="demo-simple-select"
+								value={title}
+								label="Title"
+								onChange={handleChangeTitle}
+							>
+								{masterTitle.map((row) =>
+									<MenuItem value={row.id}>{row.nama}</MenuItem>
+								)}
+							</Select>
+						</FormControl>
+					</label>
 				</div>
-			</Modal>
-	</button>
+				{/* Nama Lengkap */}
+				<div className="Fullname mb-6">
+					<label className="relative block">
+						<FormControl fullWidth size="small">
+							<TextField 
+								onChange={(e) => setFullname(e.target.value)}
+								id="outlined-basic"
+								label="Fullname"
+								variant="outlined"
+								size="small"
+							/>
+						</FormControl>
+					</label>
+				</div>
+				{/* Gender */}
+				<div className="Title mb-6 text-xs">
+					<label className="relative block">
+						{/* <span className="sr-only">Title</span> */}
+						<FormControl fullWidth size="small">
+							<InputLabel id="demo-simple-select-label">Jenis Kelamin</InputLabel>
+							<Select
+								labelId="demo-simple-select-label"
+								id="demo-simple-select"
+								value={gender}
+								label="Jenis Kelamin"
+								onChange={handleChangeGender}
+							>
+								{masterJK.map((row) =>
+									<MenuItem value={row.id}>{row.jk}</MenuItem>
+								)}
+							</Select>
+						</FormControl>
+					</label>
+				</div>
+				{/* Nationality */}
+				<div className="Title mb-6 text-xs">
+					<label className="relative block">
+						{/* <span className="sr-only">Title</span> */}
+						<FormControl fullWidth size="small">
+							<InputLabel id="demo-simple-select-label">Kewarganegaraan</InputLabel>
+							<Select
+								labelId="demo-simple-select-label"
+								id="demo-simple-select"
+								value={nationality}
+								label="Kewarganegaraan"
+								onChange={handleChangeNationality}
+							>
+								{masterNegara.map((row) => 
+									<MenuItem value={row.id}>{row.negara}</MenuItem>
+								)}
+							</Select>
+						</FormControl>
+					</label>
+				</div>
+				{/* Tanggal Lahir */}
+				<div className="grid bg-[#eeeff1] rounded-lg">
+					<LocalizationProvider dateAdapter={AdapterDayjs}>
+						<DatePicker
+							label="Tanggal Lahir"
+							format="DD/MM/YYYY"
+							value={birthDate}
+							onChange={handleChangeBirthDate}
+							renderInput={(params) => <TextField size="small" fullWidth {...params } />}
+							InputAdornmentProps={{ position: 'start' }}
+							/>
+					</LocalizationProvider>
+				</div>
+			</form>
+			<div className="grid justify-center">
+				<div className="submit mt-10 h-8 w-40 text-center rounded-xl text-white bg-green-600 hover:bg-green-800 ">
+					<input type="submit" value="Submit" onClick={handleSubmit} />
+				</div>
+			</div>
+		</div>
   )
 }
 
