@@ -12,7 +12,7 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  function handleLogin(event) {
+  const handleLogin = (event) => {
     event.preventDefault();
     axios({
       method: "POST",
@@ -94,7 +94,7 @@ const Login = () => {
             </label>
           </div>
             <div className="submit h-8 mb-3 rounded w-full pt-1 text-white bg-purple-800 hover:bg-purple-600 text-md">
-              <input type="submit" value="Login" onClick={handleLogin} />
+              <input type="submit" value="Login" onClick={(e) => handleLogin(e)} onBlur={(e) => handleLogin(e)}/>
             </div>
             <div className="text-xs">
             <span>

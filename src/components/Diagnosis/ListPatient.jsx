@@ -35,30 +35,21 @@ function getTooltipLabel(value) {
   }
 }
 
+
 const ListPatient = () => {
-	// let listPatients = [
-	// 	{id: 1, noRM: "000121", nama: "Andika Gustariano", jk: "L", umur: 30 },
-	// 	{id: 2, noRM: "000122", nama: "Beben Sumarto Aji", jk: "L", umur: 29 },
-	// 	{id: 3, noRM: "000123", nama: "Nenden", jk: "P", umur: 29 },
-	// 	{id: 4, noRM: "000124", nama: "Ahmad Dahlan", jk: "L", umur: 35 },
-	// 	{id: 5, noRM: "000125", nama: "Wanto Surahman", jk: "L", umur: 70 },
-	// 	{id: 6, noRM: "000126", nama: "Sheren Rentanu", jk: "P", umur: 19 },
-	// 	{id: 7, noRM: "000127", nama: "Kusmayanto", jk: "L", umur: 40 },
-	// 	{id: 8, noRM: "000128", nama: "Julia Ambarwati", jk: "P", umur: 35 },
-	// 	{id: 9, noRM: "000129", nama: "Mamat Surahmat", jk: "L", umur: 25 },
-	// 	{id: 10, noRM: "000130", nama: "Dewi Kania", jk: "P", umur: 39 },
-	// 	{id: 11, noRM: "000131", nama: "Erna Fujiawati", jk: "P", umur: 40 },
-	// 	{id: 12, noRM: "000132", nama: "Edi Kusmayadi", jk: "L", umur: 34 },
-	// 	{id: 13, noRM: "000133", nama: "Muhammad Hadad Setiawan", jk: "L", umur: 19 },
-	// 	{id: 14, noRM: "000134", nama: "Jeff Lauw", jk: "L", umur: 23 },
-	// 	{id: 15, noRM: "000135", nama: "Juminten", jk: "P", umur: 25 },
-	// 	{id: 16, noRM: "000136", nama: "Tina Fernandez", jk: "P", umur: 25 },
-	// ]
 	const [list, setList] = useState([]);
 	const [open, setOpen] = useState(false);
+	const [isActive, setIsActive] = useState(localStorage.getItem("patient"));
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => setOpen(false);
 	// console.log(open)
+
+	const handleActive = (event) => {
+		setIsActive(event.currentTarget.id)
+		localStorage.setItem("patient", event.currentTarget.id);
+		window.location.reload(false);
+	}
+	// console.log(isActive)
 
 	useEffect(() => {
 		axios.get(
@@ -83,10 +74,17 @@ const ListPatient = () => {
 				</div>
 				<div className="p-2 bg-white rounded-xl text-black text-sm">
 					{list.map((row, i) =>
-						<div className="grid pb-1 grid-cols-12 text-sm hover:bg-purple-400 rounded-xl pt-1">
+						<div 
+							id={row.no_cm} 
+							className="grid pb-1 grid-cols-12 text-sm hover:bg-purple-300 rounded-xl pt-1" 
+							style={{
+								backgroundColor: row.no_cm === isActive ? 'rgb(168 85 247)' : '',
+								color: row.no_cm === isActive ? '#FFFFFF' : '',
+							}} 
+							onClick={handleActive}>
 							<span className='col-span-1 text-center'>{i+1}</span>
 							<span className='col-span-3 text-center'>{row.no_cm}</span>
-							<span className='col-span-4 pl-2'>{row.fullname}</span>
+							<span className='col-span-4 '>{row.fullname}</span>
 							<span className='col-span-1 text-center'>{row.gender}</span>
 							<span className='col-span-2 '>{row.age_y} thn {row.age_m} bln {row.age_d} hr</span>
 							<span className='col-span-1 text-center text-lg pl-5'>
