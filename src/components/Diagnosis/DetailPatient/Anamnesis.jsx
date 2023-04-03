@@ -83,27 +83,35 @@ const Anamnesis = () => {
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
           >
-            <div className="TambahPasien-modal rounded-lg ml-[25%] mr-[25%] mt-10 bg-[#eeeff1] p-8">
+            <div className="TambahPasien-modal rounded-lg ml-[20%] mr-[20%] mt-10 bg-[#eeeff1] p-8">
             <div className="header text-2xl pb-2 grid">
               <Box>
                 <div className="Title flex">
-                  <span onClick={handleClose} className="close absolute right-[28%] text-xl cursor-pointer">x</span>
-                  <p id="modal-modal-title" className="text-xl font-bold pb-1">Tambah Komponen Anamnesis</p>
+                  <p id="modal-modal-title" className="text-xl font-bold pb-2">Tambah Komponen Anamnesis</p>
+                  <span onClick={handleClose} className="close absolute right-[23%] text-xl font-bold cursor-pointer">x</span>
                 </div>
-                {/* <div id="modal-modal-description" className="text-xs font-bold pb-1">
-                  <div className="grid grid-cols-9 p-2 font-bold">
-                    <span className="col-span-2 text-center">No MR</span>
-                    <span className="col-span-4">Nama</span>
-                    <span className="col-span-1 text-center">JK</span>
-                    <span className="col-span-2">Umur</span>
+                <div className="grid grid-cols-3">
+                  <div id="modal-modal-description" className="col-span-2 pb-1">
+                    <div className="p-1 pl-2 grid grid-cols-5 rounded-xl text-sm font-bold bg-gray-300">
+                      <span className='col-span-1 text-center'>No MR&emsp;&emsp;&emsp;</span>
+                      <span className='col-span-2 '>Nama&emsp;</span>
+                      <span className='col-span-1 text-center'>JK&emsp;</span>
+                      <span className='col-span-1 '>Umur&emsp;</span>
+                    </div>
+                    <div className="p-2 grid grid-cols-5 rounded-xl text-sm">
+                      <span className='col-span-1 text-center'>000000000000001&emsp;</span>
+                      <span className='col-span-2 '>Firdaus Agus Wibowo&emsp;</span>
+                      <span className='col-span-1 text-center'>L&emsp;</span>
+                      <span className='col-span-1 '>34thn 0 bln 12 hr&emsp;</span>
+                    </div>
                   </div>
-                  <div className="p-2 grid grid-cols-9 rounded-xl text-sm">
-                    <span className='col-span-2 text-center'>1000000000</span>
-                    <span className='col-span-4 '>Agung</span>
-                    <span className='col-span-1 text-center'>L</span>
-                    <span className='col-span-2 '>12 Tahun</span>
+                </div>
+                <div className='flex pb-2'>
+                  <div class="p-2 m-2 rounded-full text-xs text-center text-white bg-green-500 cursor-pointer w-[32px]" onClick={handleOpen}>
+                    <span class="text-base "><FaPlus /></span>
                   </div>
-                </div> */}
+                  <p className='text-xs pt-4 font-bold'>Tambah Komponen</p>
+                </div>
                 <TambahKomponenAnamnesis />
               </Box>
               </div>
