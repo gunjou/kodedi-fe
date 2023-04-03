@@ -39,7 +39,7 @@ const TambahPasien = () => {
 
 	useEffect(() => {
 		axios.get(
-			'http://192.168.0.109:5000/master/data-title',
+			'https://kodedi.id/api/master/data-title',
 			{headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }}
 		).then((response) => {
 			setMasterTitle(response.data)
@@ -48,7 +48,7 @@ const TambahPasien = () => {
 
 	useEffect(() => {
 		axios.get(
-			'http://192.168.0.109:5000/master/data-jeniskelamin',
+			'https://kodedi.id/api/master/data-jeniskelamin',
 			{headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }}
 		).then((response) => {
 			setMasterJK(response.data)
@@ -57,7 +57,7 @@ const TambahPasien = () => {
 
 	useEffect(() => {
 		axios.get(
-			'http://192.168.0.109:5000/master/data-negara',
+			'https://kodedi.id/api/master/data-negara',
 			{headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }}
 		).then((response) => {
 			setMasterNegara(response.data)
@@ -68,7 +68,7 @@ const TambahPasien = () => {
     event.preventDefault();
     axios({
       method: "POST",
-      url: "http://192.168.0.109:5000/pasien/tambah",
+      url: "https://kodedi.id/api/pasien/tambah",
 			headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       data: {
         title: title,

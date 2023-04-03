@@ -7,7 +7,7 @@ const PatientCard = () => {
 
 	useEffect(() => {
 		axios.get(
-			'http://192.168.0.109:5000/pasien/count',
+			'https://kodedi.id/api/pasien/count',
 			{headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }}
 		).then((response) => {
 			setcount(response.data)

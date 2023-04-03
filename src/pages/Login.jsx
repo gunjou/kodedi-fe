@@ -16,7 +16,7 @@ const Login = () => {
     event.preventDefault();
     axios({
       method: "POST",
-      url: "http://192.168.0.109:5000/auth/login",
+      url: "https://kodedi.id/api/auth/login",
       data: {
         username: username,
         password: password,
@@ -27,6 +27,7 @@ const Login = () => {
         localStorage.setItem("username", response.data.current_user.username);
         localStorage.setItem("email", response.data.current_user.email);
         localStorage.setItem("fullname", response.data.current_user.fullname);
+        localStorage.setItem("patient", null);
         setToken(response.data.access_token);
         navigate("/dashboard");
       })

@@ -10,7 +10,7 @@ const Logout = () => {
         event.preventDefault();
         axios({
           method: "GET",
-          url: "http://192.168.0.109:5000/auth/logout",
+          url: "https://kodedi.id/api/auth/logout",
         })
           .then((response) => {
             localStorage.clear();

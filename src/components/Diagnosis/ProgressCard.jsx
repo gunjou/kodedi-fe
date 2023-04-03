@@ -6,7 +6,7 @@ const ProgressCard = () => {
 
 	useEffect(() => {
 		axios.get(
-			'http://192.168.0.109:5000/pasien/status',
+			'https://kodedi.id/api/pasien/status',
 			{headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }}
 		).then((response) => {
 			setcount(response.data)

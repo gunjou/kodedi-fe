@@ -17,7 +17,7 @@ const Anamnesis = () => {
 	useEffect(() => {
 		axios({
 		  method: "POST",
-		  url: 'http://192.168.0.109:5000/pasien/get-anamnesis',
+		  url: 'https://kodedi.id/api/pasien/get-anamnesis',
 		  headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
 		  data: {
 			patient: localStorage.getItem("patient"),
@@ -72,7 +72,7 @@ const Anamnesis = () => {
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
           >
-            <div className="TambahPasien-modal rounded-lg ml-[30%] mr-[30%] mt-10 bg-[#eeeff1] p-8">
+            <div className="TambahPasien-modal rounded-lg ml-[25%] mr-[25%] mt-10 bg-[#eeeff1] p-8">
             <div className="header text-2xl pb-2 grid">
               <Box>
                 <div className="Title flex">

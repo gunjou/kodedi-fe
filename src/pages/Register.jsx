@@ -16,7 +16,7 @@ const Register = () => {
     event.preventDefault();
     axios({
       method: "POST",
-      url: "http://192.168.0.109:5000/auth/register",
+      url: "https://kodedi.id/api/auth/register",
       data: {
         username: username,
         fullname: fullname,

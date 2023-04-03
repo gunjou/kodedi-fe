@@ -53,7 +53,7 @@ const ListPatient = () => {
 
 	useEffect(() => {
 		axios.get(
-			'http://192.168.0.109:5000/pasien/list',
+			'https://kodedi.id/api/pasien/list',
 			{headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }}
 		).then((response) => {
 			setList(response.data)
