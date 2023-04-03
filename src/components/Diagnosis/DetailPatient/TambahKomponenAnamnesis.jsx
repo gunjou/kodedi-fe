@@ -11,6 +11,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { FaMinus } from 'react-icons/fa';
 import { IoMdArrowDropdown, IoMdCalendar } from 'react-icons/io';
 import { format } from 'date-fns'
+import { BASE_URL } from '../../../pages/Diagnosis';
 
 const TambahKomponenAnamnesis = () => {
   const [masterKomponen, setMasterKomponen] = useState([]);
@@ -38,7 +39,7 @@ const TambahKomponenAnamnesis = () => {
 
 	useEffect(() => {
 		axios.get(
-			'https://kodedi.id/api/master/komponen-anamnesis',
+			BASE_URL + '/api/master/komponen-anamnesis',
 			{headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }}
 		).then((response) => {
 			setMasterKomponen(response.data)
@@ -47,7 +48,7 @@ const TambahKomponenAnamnesis = () => {
 
 	useEffect(() => {
 		axios.get(
-			'https://kodedi.id/api/master/hasil-anamnesis',
+			BASE_URL + '/api/master/hasil-anamnesis',
 			{headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }}
 		).then((response) => {
 			setMasterHasil(response.data)
@@ -58,7 +59,7 @@ const TambahKomponenAnamnesis = () => {
     event.preventDefault();
     axios({
       method: "POST",
-      url: "https://kodedi.id/api/pasien/anamnesis",
+      url: BASE_URL + "/api/pasien/anamnesis",
 			headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       data: {
         komponen: komponen,

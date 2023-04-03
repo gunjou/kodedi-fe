@@ -1,13 +1,14 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { IoIosMan, IoIosWoman } from "react-icons/io";
+import { BASE_URL } from "../../pages/Diagnosis";
 
 const PatientCard = () => {
   const [count, setcount] = useState([]);
 
 	useEffect(() => {
 		axios.get(
-			'https://kodedi.id/api/pasien/count',
+			BASE_URL + '/api/pasien/count',
 			{headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }}
 		).then((response) => {
 			setcount(response.data)

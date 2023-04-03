@@ -4,6 +4,7 @@ import { MdOutlineAccountCircle } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 import UseToken from "../UseToken";
+import { BASE_URL } from "./Diagnosis";
 
 
 const Login = () => {
@@ -16,7 +17,7 @@ const Login = () => {
     event.preventDefault();
     axios({
       method: "POST",
-      url: "https://kodedi.id/api/auth/login",
+      url: BASE_URL + "/api/auth/login",
       data: {
         username: username,
         password: password,

@@ -11,6 +11,8 @@ import { Navigate } from 'react-router-dom';
 import Logout from '../components/Logout'
 
 
+export const BASE_URL = "https://kodedi.id"
+
 const Diagnosis = () => {
   const {token} = UseToken();
 

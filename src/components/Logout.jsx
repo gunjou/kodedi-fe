@@ -1,6 +1,7 @@
 import axios from "axios";
 import React from 'react';
 import { useNavigate } from "react-router-dom";
+import { BASE_URL } from "../pages/Diagnosis";
 
 
 const Logout = () => {
@@ -10,7 +11,7 @@ const Logout = () => {
         event.preventDefault();
         axios({
           method: "GET",
-          url: "https://kodedi.id/api/auth/logout",
+          url: BASE_URL + "/api/auth/logout",
         })
           .then((response) => {
             localStorage.clear();

@@ -4,6 +4,7 @@ import { MdOutlineAccountCircle, MdOutlineEmail } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { BsPersonVcard } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
+import { BASE_URL } from "./Diagnosis";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ const Register = () => {
     event.preventDefault();
     axios({
       method: "POST",
-      url: "https://kodedi.id/api/auth/register",
+      url: BASE_URL + "/api/auth/register",
       data: {
         username: username,
         fullname: fullname,

@@ -9,6 +9,7 @@ import { BiCheck } from "react-icons/bi";
 import { IoClose } from "react-icons/io5";
 import { MdWifiProtectedSetup } from "react-icons/md";
 import TambahPasien from "./TambahPasien";
+import { BASE_URL } from '../../pages/Diagnosis';
 
 
 function GetStatus(value) {
@@ -53,7 +54,7 @@ const ListPatient = () => {
 
 	useEffect(() => {
 		axios.get(
-			'https://kodedi.id/api/pasien/list',
+			BASE_URL + '/api/pasien/list',
 			{headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }}
 		).then((response) => {
 			setList(response.data)

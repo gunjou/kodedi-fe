@@ -4,6 +4,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from "react";
 import { FaMinus, FaPlus } from 'react-icons/fa';
 import { IoMdArrowDropdown, IoMdCalendar, IoMdSave } from 'react-icons/io';
+import { BASE_URL } from '../../../pages/Diagnosis';
 
 import TambahKomponenAnamnesis from './TambahKomponenAnamnesis';
 
@@ -12,12 +13,12 @@ const Anamnesis = () => {
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => setOpen(false);
 	const [data, setData] = useState([]);
-
+	const [detailPatient, setDetailPatient] = useState();
 
 	useEffect(() => {
 		axios({
 		  method: "POST",
-		  url: 'https://kodedi.id/api/pasien/get-anamnesis',
+		  url: BASE_URL + '/api/pasien/get-anamnesis',
 		  headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
 		  data: {
 			patient: localStorage.getItem("patient"),
@@ -28,6 +29,16 @@ const Anamnesis = () => {
 	}, []);
   // console.log(data)
   // console.log(data.length)
+
+	useEffect(() => {
+		axios({
+		  method: "GET",
+		  url: BASE_URL + '/api/pasien/get-detail-patient',
+		  headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+		}).then((response) => {
+			setDetailPatient(response.data)
+		});
+	}, []);
 
 
 	if(data.length !== 0) {
@@ -76,9 +87,23 @@ const Anamnesis = () => {
             <div className="header text-2xl pb-2 grid">
               <Box>
                 <div className="Title flex">
-                  <span onClick={handleClose} className="close absolute right-[32%] text-xl cursor-pointer">x</span>
-                  <p id="modal-modal-title" className="text-xl font-bold pb-8">Tambah Komponen Anamnesis</p>
+                  <span onClick={handleClose} className="close absolute right-[28%] text-xl cursor-pointer">x</span>
+                  <p id="modal-modal-title" className="text-xl font-bold pb-1">Tambah Komponen Anamnesis</p>
                 </div>
+                {/* <div id="modal-modal-description" className="text-xs font-bold pb-1">
+                  <div className="grid grid-cols-9 p-2 font-bold">
+                    <span className="col-span-2 text-center">No MR</span>
+                    <span className="col-span-4">Nama</span>
+                    <span className="col-span-1 text-center">JK</span>
+                    <span className="col-span-2">Umur</span>
+                  </div>
+                  <div className="p-2 grid grid-cols-9 rounded-xl text-sm">
+                    <span className='col-span-2 text-center'>1000000000</span>
+                    <span className='col-span-4 '>Agung</span>
+                    <span className='col-span-1 text-center'>L</span>
+                    <span className='col-span-2 '>12 Tahun</span>
+                  </div>
+                </div> */}
                 <TambahKomponenAnamnesis />
               </Box>
               </div>

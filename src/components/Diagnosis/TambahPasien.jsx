@@ -8,6 +8,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import "react-datepicker/dist/react-datepicker.css";
+import { BASE_URL } from '../../pages/Diagnosis';
 // import { handleClose } from './ListPatient';
 
 const TambahPasien = () => {
@@ -39,7 +40,7 @@ const TambahPasien = () => {
 
 	useEffect(() => {
 		axios.get(
-			'https://kodedi.id/api/master/data-title',
+			BASE_URL + '/api/master/data-title',
 			{headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }}
 		).then((response) => {
 			setMasterTitle(response.data)
@@ -48,7 +49,7 @@ const TambahPasien = () => {
 
 	useEffect(() => {
 		axios.get(
-			'https://kodedi.id/api/master/data-jeniskelamin',
+			BASE_URL + '/api/master/data-jeniskelamin',
 			{headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }}
 		).then((response) => {
 			setMasterJK(response.data)
@@ -57,7 +58,7 @@ const TambahPasien = () => {
 
 	useEffect(() => {
 		axios.get(
-			'https://kodedi.id/api/master/data-negara',
+			BASE_URL + '/api/master/data-negara',
 			{headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }}
 		).then((response) => {
 			setMasterNegara(response.data)
@@ -68,7 +69,7 @@ const TambahPasien = () => {
     event.preventDefault();
     axios({
       method: "POST",
-      url: "https://kodedi.id/api/pasien/tambah",
+      url: BASE_URL + "/api/pasien/tambah",
 			headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       data: {
         title: title,
