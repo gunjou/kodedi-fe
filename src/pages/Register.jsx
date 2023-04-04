@@ -13,6 +13,10 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  function handleNavigate(event) {
+    navigate("/login");
+  };
+
   function handleRegister(event) {
     event.preventDefault();
     axios({
@@ -119,9 +123,9 @@ const Register = () => {
             <div className="text-xs">
             <span>
               Sudah punya akun?{" "}
-              <a href="/login" className="text-blue-700">
+              <span className="text-blue-700" onClick={handleNavigate}>
                 Login Disini
-              </a>
+              </span>
             </span>
           </div>
         </div>
