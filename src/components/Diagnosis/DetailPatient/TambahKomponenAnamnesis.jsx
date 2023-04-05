@@ -1,4 +1,4 @@
-import { TextField } from '@mui/material';
+// import { TextField } from '@mui/material';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -9,7 +9,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import "react-datepicker/dist/react-datepicker.css";
 import { FaMinus } from 'react-icons/fa';
-import { IoMdArrowDropdown, IoMdCalendar } from 'react-icons/io';
+// import { IoMdArrowDropdown, IoMdCalendar } from 'react-icons/io';
 import { format } from 'date-fns'
 import { BASE_URL } from '../../../pages/Diagnosis';
 
@@ -31,7 +31,7 @@ const TambahKomponenAnamnesis = () => {
 		setTglPeriksa(event);
     setTglPeriksaFix(event.$d);
   };
-	console.log(tglPeriksaFix)
+	// console.log(tglPeriksaFix)
 
 	const handleChangeHasil = (event) => {
 		setHasil(event.target.value);

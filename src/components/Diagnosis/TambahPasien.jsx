@@ -15,13 +15,13 @@ const TambahPasien = () => {
   const [title, setTitle] = useState("");
   const [fullname, setFullname] = useState("");
   const [gender, setGender] = useState("");
-  const [nationality, setNationality] = useState("");
+//   const [nationality, setNationality] = useState("");
   const [birthDate, setBirthDate] = useState(null);
   const [fixBirthDate, setFixBirthDate] = useState(null);
 
   const [masterTitle, setMasterTitle] = useState([]);
   const [masterJK, setMasterJK] = useState([]);
-  const [masterNegara, setMasterNegara] = useState([]);
+//   const [masterNegara, setMasterNegara] = useState([]);
 
 	const handleChangeTitle = (event) => {
     setTitle(event.target.value);
@@ -29,9 +29,9 @@ const TambahPasien = () => {
 	const handleChangeGender = (event) => {
     setGender(event.target.value);
   };
-	const handleChangeNationality = (event) => {
-    setNationality(event.target.value);
-  };
+// 	const handleChangeNationality = (event) => {
+//     setNationality(event.target.value);
+//   };
 	const handleChangeBirthDate = (event) => {
     setBirthDate(event);
     setFixBirthDate(event.$d);
@@ -56,14 +56,14 @@ const TambahPasien = () => {
 		});
 	}, []);
 
-	useEffect(() => {
-		axios.get(
-			BASE_URL + '/api/master/data-negara',
-			{headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }}
-		).then((response) => {
-			setMasterNegara(response.data)
-		});
-	}, []);
+	// useEffect(() => {
+	// 	axios.get(
+	// 		BASE_URL + '/api/master/data-negara',
+	// 		{headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }}
+	// 	).then((response) => {
+	// 		setMasterNegara(response.data)
+	// 	});
+	// }, []);
 
 	function handleSubmit(event) {
     event.preventDefault();
@@ -75,7 +75,7 @@ const TambahPasien = () => {
         title: title,
 				fullname: fullname,
 				gender: gender,
-				nationality: nationality,
+				// nationality: nationality,
 				birth_date: fixBirthDate,
       },
     })
@@ -149,10 +149,10 @@ const TambahPasien = () => {
 					</label>
 				</div>
 				{/* Nationality */}
-				<div className="Title mb-6 text-xs">
-					<label className="relative block">
+				{/* <div className="Title mb-6 text-xs">
+					<label className="relative block"> */}
 						{/* <span className="sr-only">Title</span> */}
-						<FormControl fullWidth size="small">
+						{/* <FormControl fullWidth size="small">
 							<InputLabel id="demo-simple-select-label">Kewarganegaraan</InputLabel>
 							<Select
 								labelId="demo-simple-select-label"
@@ -167,7 +167,7 @@ const TambahPasien = () => {
 							</Select>
 						</FormControl>
 					</label>
-				</div>
+				</div> */}
 				{/* Tanggal Lahir */}
 				<div className="grid bg-[#eeeff1] rounded-lg">
 					<LocalizationProvider dateAdapter={AdapterDayjs}>
