@@ -12,8 +12,7 @@ import Logout from '../components/Logout'
 
 
 // export const BASE_URL = "https://kodedi.id"
-// export const BASE_URL = "http://192.168.0.109:5000"
-export const BASE_URL = "http://192.168.35.145:5001"
+export const BASE_URL = "http://192.168.0.109:5000"
 
 const Diagnosis = () => {
   const {token} = UseToken();

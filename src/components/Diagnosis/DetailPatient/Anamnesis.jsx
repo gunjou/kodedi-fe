@@ -31,6 +31,7 @@ const Anamnesis = () => {
 
   const [masterKomponen, setMasterKomponen] = useState([]);
   const [selected, setSelected] = useState([])
+  const [disabled, setDisabled] = useState(false);
 
   // console.log(tglPeriksa)
   // console.log(tglPeriksaFix)
@@ -91,6 +92,7 @@ const Anamnesis = () => {
       },
     })
       .then((response) => {
+        setDisabled(true)
         window.location.reload(false);
       })
       .catch((error) => {
@@ -194,7 +196,7 @@ const Anamnesis = () => {
             </div>
           </div>
           <div class="pt-2 flex gap-2 ml-4">
-            <button className="Add p-1 pt-1.5 border bg-green-500 rounded-2xl flex text-white" onClick={(e) => handleSave(e)}>
+            <button className="Add p-1 pt-1.5 border bg-green-500 rounded-2xl flex text-white" disabled={disabled} onClick={(e) => handleSave(e)}>
               <p className="pl-3 pr-3 text-sm">Simpan</p>
             </button>
           </div>

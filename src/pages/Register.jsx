@@ -123,7 +123,7 @@ const Register = () => {
             <div className="text-xs">
             <span>
               Sudah punya akun?{" "}
-              <span className="text-blue-700" onClick={handleNavigate}>
+              <span className="text-blue-700 cursor-pointer" onClick={handleNavigate}>
                 Login Disini
               </span>
             </span>
