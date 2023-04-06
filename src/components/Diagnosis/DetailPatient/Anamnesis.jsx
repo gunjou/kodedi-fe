@@ -32,8 +32,8 @@ const Anamnesis = () => {
   const [masterKomponen, setMasterKomponen] = useState([]);
   const [selected, setSelected] = useState([])
 
-  console.log(tglPeriksa)
-  console.log(tglPeriksaFix)
+  // console.log(tglPeriksa)
+  // console.log(tglPeriksaFix)
   
 	const handleAdd = () => {
     setAdd(true);

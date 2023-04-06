@@ -12,7 +12,8 @@ import Logout from '../components/Logout'
 
 
 // export const BASE_URL = "https://kodedi.id"
-export const BASE_URL = "http://192.168.0.109:5000"
+// export const BASE_URL = "http://192.168.0.109:5000"
+export const BASE_URL = "http://192.168.35.145:5001"
 
 const Diagnosis = () => {
   const {token} = UseToken();
@@ -33,11 +34,11 @@ const Diagnosis = () => {
           <Logout />
         </span>
 			</div>
-      <div class="StatusPatients grid grid-cols-5 gap-4">
-				<div class="Left col-span-2">
+      <div class="StatusPatients grid grid-cols-7 gap-4">
+				<div class="Left col-span-3">
           <ListPatient />
         </div>
-				<div class="Right col-span-3">
+				<div class="Right col-span-4">
           <DetailPatient />
           <p class="Predict font-bold text-sm text-left">
             Prediksi / Rekomendasi Diagnosa

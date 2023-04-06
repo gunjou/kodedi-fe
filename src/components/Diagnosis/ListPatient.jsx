@@ -67,10 +67,10 @@ const ListPatient = () => {
 			<div className="bg-purple-600 rounded-xl">
 				<div className="grid grid-cols-12 p-2 text-white font-bold">
 					<span className="col-span-1 text-center">No</span>
-					<span className="col-span-3 text-center">No MR</span>
-					<span className="col-span-4">Nama</span>
+					<span className="col-span-3 ">No MR</span>
+					<span className="col-span-3 ">Nama</span>
 					<span className="col-span-1 text-center">JK</span>
-					<span className="col-span-2">Umur</span>
+					<span className="col-span-3">Umur</span>
 					<span className="col-span-1 text-center">Status</span>
 				</div>
 				<div className="p-2 bg-white rounded-xl text-black text-sm">
@@ -84,10 +84,10 @@ const ListPatient = () => {
 							}} 
 							onClick={handleActive}>
 							<span className='col-span-1 text-center'>{i+1}</span>
-							<span className='col-span-3 text-center'>{row.no_cm}</span>
-							<span className='col-span-4 '>{row.fullname}</span>
+							<span className='col-span-3 '>{row.no_cm}</span>
+							<span className='col-span-3 '>{row.fullname}</span>
 							<span className='col-span-1 text-center'>{row.gender}</span>
-							<span className='col-span-2 '>{row.age_y} thn {row.age_m} bln {row.age_d} hr</span>
+							<span className='col-span-3 '>{row.age_y} thn {row.age_m} bln {row.age_d} hr</span>
 							<span className='col-span-1 text-center text-lg pl-5'>
 								<Tooltip title={getTooltipLabel(row.status)} placement="top-end">
 									{GetStatus(row.status)}
