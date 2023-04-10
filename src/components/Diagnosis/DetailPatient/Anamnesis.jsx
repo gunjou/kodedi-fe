@@ -27,7 +27,7 @@ const Anamnesis = () => {
   const [tglPeriksa, setTglPeriksa] = useState(null);
   const [tglPeriksaFix, setTglPeriksaFix] = useState(null);
 
-	const [detailPatient, setDetailPatient] = useState();
+	// const [detailPatient, setDetailPatient] = useState();
 
   const [masterKomponen, setMasterKomponen] = useState([]);
   const [selected, setSelected] = useState([])
