@@ -40,9 +40,12 @@ function getTooltipLabel(value) {
 const ListPatient = () => {
 	const [list, setList] = useState([]);
 	const [open, setOpen] = useState(false);
+	const [open2, setOpen2] = useState(false);
 	const [isActive, setIsActive] = useState(localStorage.getItem("patient"));
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => setOpen(false);
+	const handleOpen2 = () => setOpen2(true);
+	const handleClose2 = () => setOpen2(false);
 	// console.log(open)
 
 	const handleActive = (event) => {
@@ -51,6 +54,28 @@ const ListPatient = () => {
 		window.location.reload(false);
 	}
 	// console.log(isActive)
+
+	function handleDelete(event) {
+		event.preventDefault();
+		axios({
+			method: "POST",
+			url: BASE_URL + "/api/pasien/hapus",
+				headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+			data: {
+			patient: localStorage.getItem("patient")
+			},
+		}).then((response) => {
+			localStorage.setItem("patient", null);
+			window.location.reload(false);
+			})
+			.catch((error) => {
+			if (error.response) {
+				console.log(error.response);
+				console.log(error.response.status);
+				console.log(error.response.headers);
+			}
+		});
+	}
 
 	useEffect(() => {
 		axios.get(
@@ -122,10 +147,40 @@ const ListPatient = () => {
 						</div>
 						</div>
 				</Modal>
-				<div className="Remove p-1 border bg-red-500 rounded-2xl flex text-white">
+				<div className="Remove p-1 border bg-red-500 rounded-2xl flex text-white" onClick={handleOpen2}>
 					<i className="pl-2 fa-solid fa-minus p-1 text-sm"></i>
 					<p className="pr-3 ">Hapus</p>
 				</div>
+				<Modal
+					open={open2}
+					onClose={handleClose2}
+					aria-labelledby="modal-modal-title"
+					aria-describedby="modal-modal-description"
+				>
+					<div className="Konfirmasi-modal rounded-lg ml-[30%] mr-[30%] mt-10 bg-[#eeeff1] p-8">
+					<div className="header text-2xl pb-2 grid">
+						<Box>
+							<div className="Title flex">
+								<span onClick={handleClose2} className="close absolute right-[32%] text-xl cursor-pointer">x</span>
+								<p id="modal-modal-title" className="text-xl font-bold pb-5">Hapus Pasien</p>
+							</div>
+							<div className="text-sm">
+								<p>Apa anda yakin akan menghapus pasien dengan No CM {localStorage.getItem("patient")}?</p>
+							</div>
+							<div className="Button flex gap-4 pt-5">
+								<button className="Hapus text-base p-0.5 pl-2.5 pr-2.5 border bg-green-500 rounded-2xl flex text-white" onClick={handleDelete}>
+									<i className="fa-solid fa-plus text-sm"></i>
+									<p className="">Hapus</p>
+								</button>
+								<button className="Batal text-base p-0.5 pl-3 pr-3 border bg-red-500 rounded-2xl flex text-white" onClick={handleClose2}>
+									<i className="fa-solid fa-minus text-sm"></i>
+									<p className="">Batal</p>
+								</button>
+							</div>
+						</Box>
+						</div>
+						</div>
+				</Modal>
 			</div>
 		</div>
   )
