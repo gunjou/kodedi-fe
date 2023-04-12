@@ -13,7 +13,7 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = (event) => {
+  function handleLogin(event) {
     event.preventDefault();
     axios({
       method: "POST",
@@ -31,6 +31,7 @@ const Login = () => {
         localStorage.setItem("patient", null);
         setToken(response.data.access_token);
         navigate("/dashboard");
+        console.log(response.data.message)
       })
       .catch((error) => {
         if (error.response) {
@@ -95,8 +96,8 @@ const Login = () => {
               Remember Me
             </label>
           </div>
-            <div className="submit h-8 mb-3 rounded w-full pt-1 text-white bg-purple-800 hover:bg-purple-600 text-md">
-              <input type="submit" value="Login" onClick={(e) => handleLogin(e)} onBlur={(e) => handleLogin(e)}/>
+            <div className="submit h-8 mb-3 rounded w-full pt-1 text-white bg-purple-800 hover:bg-purple-600 text-md cursor-pointer" onClick={handleLogin}>
+              <input type="submit" value="Login" className="cursor-pointer" onClick={handleLogin}/>
             </div>
             <div className="text-xs">
             <span>
