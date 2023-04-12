@@ -117,8 +117,8 @@ const Register = () => {
               />
             </label>
           </div>
-            <div className="submit h-8 mb-3 rounded w-full pt-1 text-white bg-purple-800 hover:bg-purple-600 text-md">
-              <input type="submit" value="Register" onClick={handleRegister} />
+            <div className="submit h-8 mb-3 rounded w-full pt-1 text-white bg-purple-800 hover:bg-purple-600 text-md cursor-pointer" onClick={handleRegister}>
+              <input type="submit" value="Register" className="cursor-pointer" onClick={handleRegister} />
             </div>
             <div className="text-xs">
             <span>
